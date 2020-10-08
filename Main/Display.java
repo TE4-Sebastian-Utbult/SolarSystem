@@ -11,10 +11,14 @@ import java.awt.Dimension;
 public class Display {
 
 
-    public static double TimeSpeed = 1;
+    public static double TimeSpeed = 25;
     public static double dt = 3;
     public static boolean running = true;
-    public static double WorldZoom = 0.4;
+
+    public static double WorldZoom = 0.0005;
+    public static double zoomSpeed = 0.005;
+    public static double SelectedFocus = 0.5;
+
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int WorldY = (int)-screenSize.getHeight()/2;
     public static int WorldX = (int)-screenSize.getWidth()/2;
@@ -26,8 +30,8 @@ public class Display {
     public static Planet[] Body = {
 
         new Planet("Sun",0.00001, 0.0, 0.0, 300.0, 1600, 0.0, 0.0, "#FFD151"),      //SOLEN
-        new Planet("P1", 0.00001, 0.0, -500.0, 8.0, 0.02, 0.01, 0.0, "#656176"),
-        new Planet("P2", 0.00001, 0.0, 800.0, 20.0, 0.2, 0.01, 0.0, "#F1856A"),
+        new Planet("P1", 0.00001, 0.0, -500.0, 4.0, 0.005, 0.01, 0.0, "#656176"),
+        new Planet("P2", 0.00001, 0.0, 800.0, 10.0, 0.2, 0.01, 0.0, "#F1856A"),
 
     };
 
@@ -94,7 +98,8 @@ public class Display {
                 e.printStackTrace();
             }
 
-            Update.run();
+            Update.runRenderUpdate();
+            Update.runViewUpdate();
 
         }
     }

@@ -17,9 +17,9 @@ public class Mouse implements MouseInputListener {
         int x = e.getX();
         int y = e.getY();
  
-        if(Display.Button[1].click(x, y)){ Display.Xspawn-=100; Display.WorldZoom+=0.05;}
+        if(Display.Button[1].click(x, y)){ Display.Xspawn-=100; Display.SelectedFocus+=0.05;}
         // else{System.out.println("!1");}
-        if(Display.Button[0].click(x, y)){ Display.Xspawn+=100; Display.WorldZoom-=0.05;}
+        if(Display.Button[0].click(x, y)){ Display.Xspawn+=100; Display.SelectedFocus-=0.05;}
         // else{System.out.println("!0");}
 
         if(Display.Button[3].click(x, y)){ Display.Yspawn-=100;}
