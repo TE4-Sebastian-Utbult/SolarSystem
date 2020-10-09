@@ -5,9 +5,9 @@
 
 
 ## Todo:
-- [ ] ***Ändra så att nyskapade Object inte behöver kalla på Zoom värdena efter uppdatering***
+- [ ] ***Ändra så att nyskapade Object inte behöver hårdkodat kalla på Zoom värdena efter uppdatering***
+- [ ] ***Set Focus function***
+- [ ] ***Skriva en redig gameloop istället för en While(running)***
 <!-- - [ ] ***  ***
-- [ ] ***  ***
-- [ ] ***  ***
 - [ ] ***  ***
 - [ ] ***  *** -->

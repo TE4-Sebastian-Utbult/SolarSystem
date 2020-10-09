@@ -17,18 +17,27 @@ public class Mouse implements MouseInputListener {
         int x = e.getX();
         int y = e.getY();
  
-        if(Display.Button[1].click(x, y)){ Display.Xspawn-=100; Display.SelectedFocus+=0.05;}
+        if(Display.Button[1].click(x, y)){ 
+            Update.FocusedObject +=1;
+            if(Update.FocusedObject > Display.Body.length-1){
+                Update.FocusedObject = 0;
+            }
+        }
         // else{System.out.println("!1");}
-        if(Display.Button[0].click(x, y)){ Display.Xspawn+=100; Display.SelectedFocus-=0.05;}
-        // else{System.out.println("!0");}
+        if(Display.Button[0].click(x, y)){ 
+            Update.FocusedObject -=1;
+            if(Update.FocusedObject < 0){
+                Update.FocusedObject = 2;
+            }
+        }
 
-        if(Display.Button[3].click(x, y)){ Display.Yspawn-=100;}
-        // else{System.out.println("!3");}
-        if(Display.Button[2].click(x, y)){ Display.Yspawn+=100;}
-        // else{System.out.println("!2");} 
-
-        if(Display.Button[8].click(x, y)){ Create.Planet(Display.Xspawn, Display.Yspawn);}
-        // else{System.out.println("!SUBMIT");} 
+        if(Display.Button[2].click(x, y)){ 
+            if(Display.FocusManMade){
+                Display.FocusManMade = false;
+            } else{
+                Display.FocusManMade = true;
+            }
+        }
 
         
         

@@ -4,12 +4,10 @@ import Listeners.*;
 
 public class Update {
 
-    
+    public static int FocusedObject = 0;
+    public static int countDiv = 0;
+
     public static void runRenderUpdate(){
-        
-        Display.screenSize = Display.frame.getSize();
-        Display.WorldY = (int)-Display.frame.getHeight()/2;
-        Display.WorldX = (int)-Display.frame.getWidth()/2;
         
         for (int i = 0; i < Display.Body.length; i++) {
             for (int j = 0; j < Display.Body.length; j++) {
@@ -22,16 +20,56 @@ public class Update {
     };
 
     public static void runViewUpdate(){
-        if(Display.WorldZoom != Display.SelectedFocus){
-            if(Display.WorldZoom <= Display.SelectedFocus){
-                Display.WorldZoom += Display.zoomSpeed;
+
+        Display.screenSize = Display.frame.getSize();       //Updater default x and y pos
+        Display.WorldY = (int)-Display.frame.getHeight()/2;
+        Display.WorldX = (int)-Display.frame.getWidth()/2;
+
+        for (int i = 0; i < Display.Body.length; i++) {
+            if(i == FocusedObject){
+                Display.Body[i].Focused = true;
+            }else{
+                Display.Body[i].Focused = false;
             }
-            if(Display.WorldZoom >= Display.SelectedFocus){
-                Display.WorldZoom -= Display.zoomSpeed;
-            }
-        }else{
-            Display.zoomSpeed = 0.0;
         }
+        for (int i = 0; i < Display.Body.length; i++) {
+            if(i == FocusedObject){
+                Display.Body[i].Focused = true;
+            }else{
+                Display.Body[i].Focused = false;
+            }
+        }
+
+        int count = -1;
+        for (int i = 0; i < Display.Body.length; i++) {
+            if(Display.Body[i].Focused){
+                count += 1;
+            }
+        }
+        if(count == Display.Body.length){
+            Display.WorldZoom = 0.5;
+        }
+
+        for (int i = 0; i < Display.Body.length; i++) {     //Focus
+            if(Display.Body[i].Focused){
+                Display.WorldY = (int)(Display.Body[i].py*Display.WorldZoom-Display.frame.getHeight()/2);
+                Display.WorldX = (int)(Display.Body[i].px*Display.WorldZoom-Display.frame.getWidth()/2);
+                Display.SelectedZoom = Display.Body[i].sf;
+            }
+        }
+
+        //WORLD ZOOM CHANGE
+
+        if(Display.WorldZoom != Display.SelectedZoom){
+            // if(Display.WorldZoom <= Display.SelectedZoom){
+            //     Display.WorldZoom += Display.zoomSpeed;
+            // }
+            // if(Display.WorldZoom >= Display.SelectedZoom){
+            //     Display.WorldZoom -= Display.zoomSpeed;
+            // }
+            Display.WorldZoom = Display.SelectedZoom;
+        }
+        
     }
 
 }

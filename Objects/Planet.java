@@ -18,32 +18,30 @@ public class Planet {
     double G = 0.01;
     String name = "";
     String color1 = "#FFFFFF";
-    int tailcount = 0;
-    Planet[] tail = new Planet[10];
-
+    
     //Position
     public double px = 0;
     public double py = 0;
     public double ax = 0;
     public double ay = 0;
+    
     double fx = 0;
     double fy = 0;
     public double vx = 0;
     double vy = 0;
-
+    public boolean Focused = false; 
+    public double sf;
+    
     double dx=0;
     double dy=0;
 
 
-    public Planet(String name, Double G, double x, double y, double d, double m, double ax, double ay, String color){
+    public Planet(String name, Double G, double x, double y, double d, double m, double ax, double ay, String color, Double sf){
 
         this.px = x;
         this.py = y;
         this.d  = d;
         this.m  = m;
-        
-        this.tail = new Planet[10];
-        this.tailcount = 0;
         
         this.ax = ax;
         this.ay = ay;
@@ -52,6 +50,8 @@ public class Planet {
         this.color1 = color;
         this.visible = true;
         this.G = G;
+
+        this.sf = sf;
 
         this.a  = 0;
         this.fx = 0;

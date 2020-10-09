@@ -10,14 +10,16 @@ import java.awt.Dimension;
 
 public class Display {
 
-
-    public static double TimeSpeed = 25;
+    public static double TimeSpeed = 1;
     public static double dt = 3;
     public static boolean running = true;
 
     public static double WorldZoom = 0.0005;
-    public static double zoomSpeed = 0.005;
-    public static double SelectedFocus = 0.5;
+    public static double WorldXspeed = 10;
+    public static double WorldYspeed = 10;
+    public static double zoomSpeed = 0.5;
+    public static double SelectedZoom = 0.1;
+    public static boolean FocusManMade = false;
 
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int WorldY = (int)-screenSize.getHeight()/2;
@@ -29,12 +31,17 @@ public class Display {
     // public static Planet[] Body;
     public static Planet[] Body = {
 
-        new Planet("Sun",0.00001, 0.0, 0.0, 300.0, 1600, 0.0, 0.0, "#FFD151"),      //SOLEN
-        new Planet("P1", 0.00001, 0.0, -500.0, 4.0, 0.005, 0.01, 0.0, "#656176"),
-        new Planet("P2", 0.00001, 0.0, 800.0, 10.0, 0.2, 0.01, 0.0, "#F1856A"),
+        new Planet("Sun",0.00001, 0.0, 0.0, 300.0, 1600, 0.0, 0.0, "#FFD151", .2),      //SOLEN
+        new Planet("P1", 0.00001, 0.0, -500.0, 4.0, 0.005, 0.01, 0.0, "#656176", 80.0),
+        new Planet("P2", 0.00001, 0.0, 800.0, 10.0, 0.2, 0.01, 0.0, "#F1856A", 80.0),
 
     };
 
+    public static PopulatedVessel[] Vessel = {
+
+        
+
+    };
     
     public static int PMAKE_X = 20;
     public static int PMAKE_Y = 20;
@@ -45,18 +52,7 @@ public class Display {
         
         new Button(PMAKE_X + 0, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
         new Button(PMAKE_X + 0, PMAKE_Y + 60, 20, 20, "#FFFFFF"),
-
-        new Button(PMAKE_X + 30, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
-        new Button(PMAKE_X + 30, PMAKE_Y + 60, 20, 20, "#FFFFFF"),
-
-        new Button(PMAKE_X + 60, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
-        new Button(PMAKE_X + 60, PMAKE_Y + 60, 20, 20, "#FFFFFF"),
-
-        new Button(PMAKE_X + 90, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
-        new Button(PMAKE_X + 90, PMAKE_Y + 60, 20, 20, "#FFFFFF"),
-
-        new Button(PMAKE_X + 120, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
-        
+        new Button(PMAKE_X + 40, PMAKE_Y + 0, 20, 80, "#FFFFFF"),
     };
 
     public static void main(String[] args) {
