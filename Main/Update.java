@@ -2,7 +2,7 @@ package Main;
 
 public class Update {
 
-    public static int FocusedObject = 0;
+    public static int FocusedObject = 4;
     public static int countDiv = 0;
 
 
@@ -62,12 +62,24 @@ public class Update {
     public static void runRenderUpdate(){
         
         for (int i = 0; i < Display.Body.length; i++) {
+            
             for (int j = 0; j < Display.Body.length; j++) {
                 Display.Body[i].update(Display.Body[j]);
                 Display.Body[i].attraction();
                 Display.r.repaint();
             }
+
+            if(Display.Body[i].distance > Display.Body[i].d/2){
+                Display.player.update(Display.Body[i]);
+                Display.player.attraction();
+            }
+
         }
+
+        // System.out.println();
+        // System.out.println("Henrik X - " + Display.Body[4].dx);
+        // System.out.println("Henrik Y - " + Display.Body[4].dy);
+
     };
 
 }

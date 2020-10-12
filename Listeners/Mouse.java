@@ -16,22 +16,20 @@ public class Mouse implements MouseInputListener {
 
         int x = e.getX();
         int y = e.getY();
- 
-        if(Display.Button[1].click(x, y)){ 
-            Update.FocusedObject +=1;
-            if(Update.FocusedObject > Display.Body.length-1){
-                Update.FocusedObject = 0;
+
+        for (int i = 0; i < Display.Body.length; i++) {
+            if(Display.Body[i].pointInCircle(x , y)){
+                Update.FocusedObject = i;
+                System.out.println("!: " + i);
             }
         }
+ 
         // else{System.out.println("!1");}
         if(Display.Button[0].click(x, y)){ 
-            Update.FocusedObject -=1;
-            if(Update.FocusedObject < 0){
-                Update.FocusedObject = Display.Body.length - 1;
-            }
+            Update.FocusedObject = 0;
         }
 
-        if(Display.Button[2].click(x, y)){ 
+        if(Display.Button[1].click(x, y)){ 
             if(Display.running){
                 Display.running = false;
             }else{

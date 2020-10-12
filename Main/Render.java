@@ -26,14 +26,11 @@ public class Render extends JPanel{
         
         
         //FRONTGROUND:
-        g2d.setColor(Color.decode("#4E4B5C"));
-        g2d.fillRect(480, 0, 60, 120);
         
-        g2d.setColor(Color.WHITE);
-        g2d.drawString(Double.toString(Display.SelectedZoom), 505, 65);
-
         for (int i = 0; i < Display.Button.length; i++) { Display.Button[i].paint(g2d);; }
         for (int i = 0; i < Display.Button.length; i++) { Display.Button[i].paintdropdown(g2d);}
+
+        Display.player.display(g2d);
 
     }
 

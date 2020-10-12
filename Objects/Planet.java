@@ -8,7 +8,8 @@ import java.awt.Font;
 
 public class Planet {
 
-    //Planet Appearence
+    public int distance;
+	//Planet Appearence
     public double d  = 0;
     double m  = 0;
     double a  = 0;
@@ -32,8 +33,8 @@ public class Planet {
     public boolean Focused = false; 
     public double sf;
     
-    double dx=0;
-    double dy=0;
+    public double dx=0;
+    public double dy=0;
 
 
     public Planet(String name, Double G, double x, double y, double d, double m, double ax, double ay, String color, Double sf){
@@ -58,6 +59,11 @@ public class Planet {
         this.fy = 0;
         this.vx = 0;
         this.vy = 0;
+
+        this.dx = 0;
+        this.dy = 0;
+
+
 
     }
     
@@ -89,10 +95,14 @@ public class Planet {
         if(visible){  
             g2d.setColor(Color.decode(this.color));
             g2d.fillOval((int)((this.px - this.d/2)*Display.WorldZoom) - Display.WorldX, (int)((this.py  - this.d/2)*Display.WorldZoom) - Display.WorldY, (int)(this.d*Display.WorldZoom), (int)(this.d*Display.WorldZoom));
+
+            this.dx = (this.px*Display.WorldZoom) - Display.WorldX;
+            this.dy = (this.py*Display.WorldZoom) - Display.WorldY;
         }
     }
 
     public void displayDistance(Graphics2D g2d, Planet outher){
+
         int Distance = (int)distance(outher.px, outher.py, this.px, this.py);
         if(visible){
             g2d.setColor(Color.DARK_GRAY);
@@ -100,9 +110,13 @@ public class Planet {
         }
     }
     
+    public void displayOrbitpath(Graphics2D g2d, Planet outher){
+
+    }
+
     public boolean pointInCircle(int x, int y) {
-        var distancesquared = (x - this.px) * (x - this.px) + (y - this.py) * (y - this.py);
-        return distancesquared <= (this.d)-50 * (this.d)-50;
+        var distancesquared = (x - this.dx) * (x - this.dx) + (y - this.dy) * (y - this.dy);
+        return distancesquared <= (this.d)+100 * (this.d)+100;
     }
 
     public double distance(double x1, double y1, double x2, double y2){
