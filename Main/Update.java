@@ -1,23 +1,10 @@
 package Main;
 
-import Listeners.*;
-
 public class Update {
 
     public static int FocusedObject = 0;
     public static int countDiv = 0;
 
-    public static void runRenderUpdate(){
-        
-        for (int i = 0; i < Display.Body.length; i++) {
-            for (int j = 0; j < Display.Body.length; j++) {
-                Display.Body[i].update(Display.Body[j]);
-                Display.Body[i].attraction();
-                Display.frame.repaint();
-                Collision.Planets();
-            }
-        }
-    };
 
     public static void runViewUpdate(){
 
@@ -71,5 +58,16 @@ public class Update {
         }
         
     }
+    
+    public static void runRenderUpdate(){
+        
+        for (int i = 0; i < Display.Body.length; i++) {
+            for (int j = 0; j < Display.Body.length; j++) {
+                Display.Body[i].update(Display.Body[j]);
+                Display.Body[i].attraction();
+                Display.r.repaint();
+            }
+        }
+    };
 
 }

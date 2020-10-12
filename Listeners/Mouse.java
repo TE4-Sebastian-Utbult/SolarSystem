@@ -27,19 +27,17 @@ public class Mouse implements MouseInputListener {
         if(Display.Button[0].click(x, y)){ 
             Update.FocusedObject -=1;
             if(Update.FocusedObject < 0){
-                Update.FocusedObject = 2;
+                Update.FocusedObject = Display.Body.length - 1;
             }
         }
 
         if(Display.Button[2].click(x, y)){ 
-            if(Display.FocusManMade){
-                Display.FocusManMade = false;
-            } else{
-                Display.FocusManMade = true;
+            if(Display.running){
+                Display.running = false;
+            }else{
+                Display.running = true;
             }
         }
-
-        
         
     }
     

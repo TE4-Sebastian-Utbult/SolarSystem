@@ -10,7 +10,9 @@ import java.awt.Dimension;
 
 public class Display {
 
-    public static double TimeSpeed = 1;
+    public static boolean Play_State = true;
+
+    public static int TimeSpeed = 10;
     public static double dt = 3;
     public static boolean running = true;
 
@@ -22,37 +24,39 @@ public class Display {
     public static boolean FocusManMade = false;
 
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public static int WorldY = (int)-screenSize.getHeight()/2;
-    public static int WorldX = (int)-screenSize.getWidth()/2;
+    public static int WorldY = (int) -screenSize.getHeight() / 2;
+    public static int WorldX = (int) -screenSize.getWidth() / 2;
 
     public static JFrame frame;
     static Render r = new Render();
+    static Pause p = new Pause();
 
     // public static Planet[] Body;
     public static Planet[] Body = {
 
-        new Planet("Sun",0.00001, 0.0, 0.0, 300.0, 1600, 0.0, 0.0, "#FFD151", .2),      //SOLEN
-        new Planet("P1", 0.00001, 0.0, -500.0, 4.0, 0.005, 0.01, 0.0, "#656176", 80.0),
-        new Planet("P2", 0.00001, 0.0, 800.0, 10.0, 0.2, 0.01, 0.0, "#F1856A", 80.0),
+            new Planet("Sun", 0.00001, 0.0, 0.0, 300.0, 1600, 0.0, 0.0, "#FFD151", .2), // SOLEN
+            new Planet("Charleé", 0.00001, 0.0, -500.0, 8.0, 0.02, 0.0090, 0.0, "#656176", 0.4),
+            new Planet("Sebbe", 0.00001, 0.0, 1200.0, 10.0, 0.2, 0.0050, 0.0, "#F1856A", 0.4),
+            new Planet("Wilda", 0.00001, 1800, 0.0, 40.0, 10., 0.0, 0.0046, "#64B6AC", 0.4),
+            new Planet("Henrik", 0.00001, -4000, 0.0, 50, 30.0, 0.0, 0.0028, "#4F7CAC", 0.3),
+            // new Planet("Alex", 0.00001, 3000, 0.0, 30, 10.0, 0.0, 0.001, "#A657AE", 0.25),
 
     };
 
     public static PopulatedVessel[] Vessel = {
 
-        
-
     };
-    
-    public static int PMAKE_X = 20;
+
+    public static int PMAKE_X = 500;
     public static int PMAKE_Y = 20;
     public static double Xspawn = 0;
     public static double Yspawn = 0;
 
     public static Button[] Button = {
-        
-        new Button(PMAKE_X + 0, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
-        new Button(PMAKE_X + 0, PMAKE_Y + 60, 20, 20, "#FFFFFF"),
-        new Button(PMAKE_X + 40, PMAKE_Y + 0, 20, 80, "#FFFFFF"),
+
+            new Button(PMAKE_X + 0, PMAKE_Y + 0, 20, 20, "#FFFFFF"),
+            new Button(PMAKE_X + 0, PMAKE_Y + 60, 20, 20, "#FFFFFF"), new Button(0, 0, 20, 20, "#FFFFFF"),
+
     };
 
     public static void main(String[] args) {
@@ -64,38 +68,48 @@ public class Display {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(screenSize);
         frame.setVisible(true);
+        frame.add(p);
         frame.add(r);
         frame.addMouseListener(new Mouse());
 
-        /** Startar Gameloop:
-         * - Fixa en redig gameloop
-         * - Fps mätare
-        */
+        /**
+         * Startar Gameloop: - Fixa en redig gameloop - Fps mätare
+         */
 
         start();
     }
 
-    public static void start(){
+    public static void start() {
         running = true;
         run();
     }
 
-    public static void stop(){
+    public static void stop() {
         running = false;
     }
 
-    public static void run(){
-        while (running) { 
+    public static void run() {
+        while (1 == 1) {
 
             try {
-                Thread.sleep((int)TimeSpeed);
+                Thread.sleep(TimeSpeed);
             } catch (InterruptedException e) {
-                System.out.println("Error in Thread.sleep");
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
-            Update.runRenderUpdate();
-            Update.runViewUpdate();
+            if(running){
+                if(Play_State){
+                    r.setVisible(true);
+                    p.setVisible(false);
+                    Collision.Planets();
+                    Update.runRenderUpdate();
+                    Update.runViewUpdate();
+                }else{
+                    r.setVisible(false);
+                    p.setVisible(true);
+                }
+            }
 
         }
     }

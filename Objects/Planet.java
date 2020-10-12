@@ -9,7 +9,7 @@ import java.awt.Font;
 public class Planet {
 
     //Planet Appearence
-    double d  = 0;
+    public double d  = 0;
     double m  = 0;
     double a  = 0;
     public boolean visible = true;
@@ -17,7 +17,7 @@ public class Planet {
     //Outher Appearance
     double G = 0.01;
     String name = "";
-    String color1 = "#FFFFFF";
+    String color = "#FFFFFF";
     
     //Position
     public double px = 0;
@@ -47,7 +47,7 @@ public class Planet {
         this.ay = ay;
         
         this.name = name;
-        this.color1 = color;
+        this.color = color;
         this.visible = true;
         this.G = G;
 
@@ -79,30 +79,24 @@ public class Planet {
     public void attraction() {
         this.vx += (this.fx/this.m)*Display.dt;
         this.vy += (this.fy/this.m)*Display.dt;
-        this.px += this.ax + this.vx*Display.dt;
-        this.py += this.ay + this.vy*Display.dt;
+        this.px += (this.ax + this.vx*Display.dt);
+        this.py += (this.ay + this.vy*Display.dt);
     }
 
     //GRAPHICS
 
     public void display(Graphics2D g2d) {
         if(visible){  
-            g2d.setColor(Color.decode(this.color1));
+            g2d.setColor(Color.decode(this.color));
             g2d.fillOval((int)((this.px - this.d/2)*Display.WorldZoom) - Display.WorldX, (int)((this.py  - this.d/2)*Display.WorldZoom) - Display.WorldY, (int)(this.d*Display.WorldZoom), (int)(this.d*Display.WorldZoom));
         }
     }
 
-    public void DistanceLine(Graphics2D g2d, Planet outher){
-        double Distance = distance(outher.px, outher.py, this.px, this.py);
-
-        if(visible && Distance > 100 && Display.WorldZoom > 10000){      //FIXA DISTANCE LINE
-            g2d.setColor(new Color(255, 255, 255, 30));
-            g2d.drawLine((int)Display.Body[0].px, (int)Display.Body[0].py, (int)this.px, (int)this.py);
-
-            g2d.setColor(new Color(255, 255, 255, 40));
-            g2d.setFont(new Font("TimesRoman", Font.PLAIN, 8));
-            g2d.drawString((int)Distance + "M", (int)((outher.px + this.px)/2)-15, (int)((outher.py + this.py)/2)+20);
-            g2d.drawString(name, (int)((outher.px + this.px)/2)-15, (int)((outher.py + this.py)/2)+5);
+    public void displayDistance(Graphics2D g2d, Planet outher){
+        int Distance = (int)distance(outher.px, outher.py, this.px, this.py);
+        if(visible){
+            g2d.setColor(Color.DARK_GRAY);
+            g2d.drawString(this.name + " - " + Distance,(int)((this.px - this.d/2)*Display.WorldZoom) - Display.WorldX, (int)((this.py  - this.d/2)*Display.WorldZoom) - Display.WorldY);
         }
     }
     
