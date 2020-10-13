@@ -2,6 +2,7 @@ package Main;
 
 import javax.swing.JFrame;
 import java.awt.Toolkit;
+import InterfaceVisuals.*;
 
 import Objects.*;
 import Listeners.*;
@@ -12,7 +13,7 @@ public class Display {
 
     public static boolean Play_State = true;
 
-    public static int TimeSpeed = 1;
+    public static int TimeSpeed = 10;
     public static double dt = 3;
     public static boolean running = true;
 
@@ -59,7 +60,7 @@ public class Display {
 
     };
 
-    public static Player player = new Player(-4026, 0,0.0,0);
+    public static Player player = new Player(-4025.1, 0, 0, 0, 4000.0);
 
     public static void main(String[] args) {
 
@@ -73,6 +74,7 @@ public class Display {
         frame.add(p);
         frame.add(r);
         frame.addMouseListener(new Mouse());
+        frame.addKeyListener(new Keys());
 
         /**
          * Startar Gameloop: - Fixa en redig gameloop - Fps mätare
@@ -104,7 +106,6 @@ public class Display {
                 if(Play_State){
                     r.setVisible(true);
                     p.setVisible(false);
-                    Collision.Planets();
                     Update.runRenderUpdate();
                     Update.runViewUpdate();
                 }else{

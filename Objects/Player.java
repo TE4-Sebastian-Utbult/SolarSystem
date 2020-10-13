@@ -19,23 +19,25 @@ public class Player {
     public double dy = 0;
     
     public double a = 0;
-    public double h = 2;
-    public double w = 1;
+    public double h = 0.005;
+    public double w = 0.0025;
     public double dh = 100;
     public double dw = 100;
 
     public double distance = 0;
 
-    public boolean Focused = true;
+    public boolean Focused = false;
 
-    public double m = 0.000001;
+    public double m = 0.01;
+	public double sf;
 
-    public Player(double x, double y, double ax, double ay){
+    public Player(double x, double y, double ax, double ay, double sf){
     
         this.px = x;
         this.py = y;
         this.ax = ax;
         this.ay = ay;
+        this.sf = sf;
     
     }
 
@@ -47,12 +49,12 @@ public class Player {
         this.dw = this.w*Display.WorldZoom;
 
         AffineTransform old = g2d.getTransform();
-        g2d.rotate(Math.toRadians(Math.toDegrees(this.a)-85), (int)(this.dx-this.dh/4), (int)(this.dy-this.dh));
+        g2d.rotate(Math.toRadians(Math.toDegrees(this.a)-90), (int)(this.dx-this.dh/4), (int)(this.dy-this.dh));
 
         g2d.setColor(Color.decode("#A6CFD5"));
         g2d.drawRect((int)(this.dx-this.dh/4), (int)(this.dy-this.dh), (int)this.dw, (int)this.dh);
         g2d.setColor(Color.RED);
-        g2d.drawRect((int)this.dx-1, (int) this.dy-1, 2, 2);
+        g2d.fillOval((int)this.dx-1, (int) this.dy-1, 2, 2);
 
         g2d.transform(old);
 

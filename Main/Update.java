@@ -1,5 +1,7 @@
 package Main;
 
+import Listeners.*;
+
 public class Update {
 
     public static int FocusedObject = 4;
@@ -19,6 +21,7 @@ public class Update {
                 Display.Body[i].Focused = false;
             }
         }
+
         for (int i = 0; i < Display.Body.length; i++) {
             if(i == FocusedObject){
                 Display.Body[i].Focused = true;
@@ -33,6 +36,7 @@ public class Update {
                 count += 1;
             }
         }
+        
         if(count == Display.Body.length){
             Display.WorldZoom = 0.5;
         }
@@ -43,6 +47,12 @@ public class Update {
                 Display.WorldX = (int)(Display.Body[i].px*Display.WorldZoom-Display.frame.getWidth()/2);
                 Display.SelectedZoom = Display.Body[i].sf;
             }
+        }
+        
+        if(Display.player.Focused){
+            Display.WorldY = (int)(Display.player.py*Display.WorldZoom-Display.frame.getHeight()/2);
+            Display.WorldX = (int)(Display.player.px*Display.WorldZoom-Display.frame.getWidth()/2);
+            Display.SelectedZoom = Display.player.sf;
         }
 
         //WORLD ZOOM CHANGE
@@ -60,6 +70,7 @@ public class Update {
     }
     
     public static void runRenderUpdate(){
+
         
         for (int i = 0; i < Display.Body.length; i++) {
             
@@ -68,14 +79,14 @@ public class Update {
                 Display.Body[i].attraction();
                 Display.r.repaint();
             }
-
-            if(Display.Body[i].distance > Display.Body[i].d/2){
-                Display.player.update(Display.Body[i]);
-                Display.player.attraction();
-            }
-
+            
+            Display.player.update(Display.Body[i]);
+            Display.player.attraction();
+            
         }
-
+        
+        Collision.run();
+        
         // System.out.println();
         // System.out.println("Henrik X - " + Display.Body[4].dx);
         // System.out.println("Henrik Y - " + Display.Body[4].dy);

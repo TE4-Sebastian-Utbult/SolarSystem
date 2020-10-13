@@ -35,6 +35,7 @@ public class Planet {
     
     public double dx=0;
     public double dy=0;
+    public double dd = 0;
 
 
     public Planet(String name, Double G, double x, double y, double d, double m, double ax, double ay, String color, Double sf){
@@ -79,7 +80,7 @@ public class Planet {
 
         this.fx = f * Math.cos(this.a);
         this.fy = f * Math.sin(this.a);
-
+        
     }
 
     public void attraction() {
@@ -98,6 +99,7 @@ public class Planet {
 
             this.dx = (this.px*Display.WorldZoom) - Display.WorldX;
             this.dy = (this.py*Display.WorldZoom) - Display.WorldY;
+            this.dd = (this.d*Display.WorldZoom);
         }
     }
 

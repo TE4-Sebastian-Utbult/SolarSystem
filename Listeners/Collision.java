@@ -4,6 +4,11 @@ import Main.*;
 
 public class Collision {
 
+    public static void run(){
+        Planets();
+        Vessels();
+    }
+
     public static void Planets(){
         for (int i = 1; i < Display.Body.length; i++) {
             for (int j = 0; j < Display.Body.length; j++) {
@@ -12,6 +17,17 @@ public class Collision {
                         Display.Body[i].visible = false;
                     }
                 }
+            }
+        }
+    }
+
+    public static void Vessels(){
+        for (int i = 0; i < Display.Body.length; i++){
+            if(CircleOnCircle(Display.Body[i].d/2, Display.player.h, distance(Display.Body[i].px, Display.Body[i].py, Display.player.px, Display.player.py))){
+                System.out.println(i + ": COLLISION");
+
+                Display.player.dx = Display.Body[i].dx;
+                Display.player.dy = Display.Body[i].dy;
             }
         }
     }
