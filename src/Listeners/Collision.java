@@ -1,34 +1,28 @@
-package Listeners;
+package src.Listeners;
 
-import Main.*;
+import src.Main.*;
 
 public class Collision {
 
-    public static void run(){
-        Planets();
-        Vessels();
-    }
-
-    public static void Planets(){
+    public static void PlanetCollide(){
         for (int i = 1; i < Display.Body.length; i++) {
             for (int j = 0; j < Display.Body.length; j++) {
                 if(i != j){
                     if(CircleOnCircle(Display.Body[i].d/2, Display.Body[j].d/2, distance(Display.Body[i].px, Display.Body[i].py, Display.Body[j].px, Display.Body[j].py))){
+
                         Display.Body[i].visible = false;
+
                     }
                 }
             }
         }
     }
 
-    public static void Vessels(){
-        for (int i = 0; i < Display.Body.length; i++){
-            if(CircleOnCircle(Display.Body[i].d/2, Display.player.h, distance(Display.Body[i].px, Display.Body[i].py, Display.player.px, Display.player.py))){
-                System.out.println(i + ": COLLISION");
-
-                Display.player.dx = Display.Body[i].dx;
-                Display.player.dy = Display.Body[i].dy;
-            }
+    public static boolean Player(int i){
+        if(CircleOnCircle(Display.Body[i].d/2, Display.player.h, Display.player.getDistanceFromPlanet(Display.Body[i]))){
+            return true;
+        }else{
+            return false;
         }
     }
     

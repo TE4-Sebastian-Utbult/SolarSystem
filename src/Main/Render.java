@@ -1,4 +1,4 @@
-package Main;
+package src.Main;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,8 +10,7 @@ public class Render extends JPanel{
 
     Render() {
         super();
-        this.setBackground(Color.decode("#080213"));
-        this.repaint();
+        this.setBackground(Color.decode("#000000"));
     }
     
     protected void paintComponent(Graphics g) {
@@ -21,9 +20,19 @@ public class Render extends JPanel{
         super.paintComponent(g2d);
 
         //CELESTIALS:
-        for (int i = 0; i < Display.Body.length; i++) { Display.Body[i].display(g2d); }
-        for (int i = 1; i < Display.Body.length; i++) { Display.Body[i].displayDistance(g2d, Display.Body[0]); }
-        
+        for (int i = 0; i < Display.Body.length; i++) { 
+            if(Display.Body[i].visible){
+
+                Display.Body[i].display(g2d);
+
+                if(Display.showInfo){
+                    Display.Body[i].displayDistance(g2d, Display.Body[0]);
+                    Display.Body[i].paintOrbitalCourse(g2d, Display.Body[0]);
+                    Display.Body[i].displayMiddlePoint(g2d);
+                }
+
+            }
+        }
         
         //FRONTGROUND:
         
