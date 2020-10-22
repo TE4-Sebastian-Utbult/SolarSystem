@@ -12,7 +12,7 @@ public class CelestialBodys {
 
         for (CelestialBody b : Display.Body) {
 
-            Circle.filled(g2d, b.color, b.px, b.py, b.d, b.d);
+            Circle.lined(g2d, b.color, b.px, b.py, b.d, b.d);
             
         }
 

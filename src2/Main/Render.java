@@ -3,29 +3,24 @@ package src2.Main;
 import javax.swing.*;
 
 import src2.GUI.Draw.CelestialBodys;
+import src2.GUI.Shapes.*;
 
 import java.awt.*;
 
 public class Render extends JPanel {
 
-    public static Graphics g;
-
-    Render(){
-        super();
-        this.setBackground(Color.decode(Display.BackgroundColor));
-    }
-
     //GLOBAL RENDERER: sets z-index for objects;
 
-    public void update() {
-
+    public void update(Graphics g) {
+        
         Graphics2D g2d = (Graphics2D) g;
         super.paintComponent(g2d);
+        AABB.filled(g2d, Display.BackgroundColor, 0, 0, (int)Display.ScreenSize.getWidth(), (int)Display.ScreenSize.getHeight());
 
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(100, 100, 100, 100);
 
         CelestialBodys.render(g2d);
+
+        g2d.dispose();
 
     }
 

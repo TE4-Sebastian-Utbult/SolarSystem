@@ -6,25 +6,31 @@ public class CelestialBody {
 
     public double px;
     public double py;
-    public static double vx;
-    public static double vy;
-    public static double fx;
-    public static double fy;
+    public double vx;
+    public double vy;
+    public double fx;
+    public double fy;
+    public double ax;
+    public double ay;
 
     public static String name;
     public static String type;
     public String color;
 
     public double d;
+    public double m;
 
-    CelestialBody(String name, String type, String color, double x, double y, double d){
+    CelestialBody(String name, String type, String color, double x, double y, double ax, double ay, double d, double m){
 
         this.name = name;
         this.type = type;
+        this.color = color;
         this.ActiveCollision = true;
 
         this.px = x;
         this.py = y;
+        this.ax = ax;
+        this.ay = ay;
 
         this.vx = 0;
         this.vy = 0;
@@ -32,6 +38,7 @@ public class CelestialBody {
         this.fy = 0;
 
         this.d = d;
+        this.m = m;
 
     }
 
