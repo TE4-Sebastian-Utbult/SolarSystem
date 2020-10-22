@@ -19,63 +19,63 @@ public class Keys implements KeyListener {
 
             case KeyEvent.VK_1:
                 Display.TimeSpeed = 1;
-            break;
+                break;
             case KeyEvent.VK_2:
                 Display.TimeSpeed = 10;
-            break;
+                break;
             case KeyEvent.VK_3:
                 Display.TimeSpeed = 20;
-            break;
+                break;
             case KeyEvent.VK_4:
                 Display.TimeSpeed = 50;
-            break;
+                break;
             case KeyEvent.VK_5:
                 Display.TimeSpeed = 100;
-            break;
+                break;
             case KeyEvent.VK_0:
 
-                if(Display.player.Focused){
+                if (Display.player.Focused) {
                     Display.player.Focused = false;
                     Display.player.Controlled = false;
-                }else{
+                } else {
                     Display.player.Focused = true;
                     Display.player.Controlled = true;
                 }
-            break;
+                break;
             case KeyEvent.VK_W:
-                if(!Display.player.Controlled){
+                if (!Display.player.Controlled) {
 
                 }
-            break;
+                break;
             case KeyEvent.VK_S:
-                if(!Display.player.Controlled){
+                if (!Display.player.Controlled) {
 
                 }
-            break;
+                break;
             case KeyEvent.VK_D:
-                if(!Display.player.Controlled){
+                if (!Display.player.Controlled) {
 
                 }
-            break;
+                break;
             case KeyEvent.VK_A:
-                if(!Display.player.Controlled){
+                if (!Display.player.Controlled) {
                     System.out.println("PLAYER NOT CONTROLLED");
                 }
-            break;
+                break;
             case KeyEvent.VK_Q:
-                if(Display.showInfo){
+                if (Display.showInfo) {
                     Display.showInfo = false;
-                }else{
+                } else {
                     Display.showInfo = true;
                 }
-            break;
+                break;
             case KeyEvent.VK_C:
-                if(Display.createPlanet){
+                if (Display.createPlanet) {
                     Display.createPlanet = false;
-                }else{
+                } else {
                     Display.createPlanet = true;
                 }
-            break;
+                break;
             default:
 
                 break;
@@ -88,5 +88,5 @@ public class Keys implements KeyListener {
         // TODO Auto-generated method stub
 
     }
-    
+
 }

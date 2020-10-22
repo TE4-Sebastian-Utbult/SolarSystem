@@ -2,8 +2,8 @@ package src.InterfaceVisuals;
 
 import java.awt.Graphics2D;
 import java.awt.Color;
- 
-public class Button{
+
+public class Button {
 
     int px = 0;
     int py = 0;
@@ -19,7 +19,7 @@ public class Button{
     String c = "#FFFFFF";
 
 
-    public Button(int x, int y, int width, int height, String color){
+    public Button(int x, int y, int width, int height, String color) {
 
         this.px = x;
         this.py = y;
@@ -32,15 +32,15 @@ public class Button{
 
     }
 
-    public void paint(Graphics2D g2d){
+    public void paint(Graphics2D g2d) {
 
         g2d.setColor(Color.decode(this.c));
         g2d.fillRect(this.px, this.py, this.w, this.h);
 
     }
 
-    public void paintdropdown(Graphics2D g2d){
-        if(this.dd == true){
+    public void paintdropdown(Graphics2D g2d) {
+        if (this.dd == true) {
             g2d.setColor(Color.decode(this.c));
             g2d.fillRect(this.px + this.w, this.py + this.h, this.dw, this.dh);
         }
@@ -48,11 +48,11 @@ public class Button{
 
     public boolean click(int Mx, int My) {
 
-        if(Mx > this.px && My > this.py && Mx < this.px+this.w && My < this.py + 44){
+        if (Mx > this.px && My > this.py && Mx < this.px + this.w && My < this.py + 44) {
 
             return true;
 
-        }else{
+        } else {
 
             return false;
 

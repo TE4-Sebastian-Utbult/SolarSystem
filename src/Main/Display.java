@@ -1,13 +1,13 @@
 package src.Main;
 
-import javax.swing.JFrame;
-import java.awt.Toolkit;
-import src.InterfaceVisuals.*;
+import src.InterfaceVisuals.Button;
+import src.Listeners.Keys;
+import src.Listeners.Mouse;
+import src.Objects.Planet;
+import src.Objects.Player;
 
-import src.Objects.*;
-import src.Listeners.*;
-
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 
 public class Display {
 
@@ -27,7 +27,7 @@ public class Display {
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int WorldY = 0;
     public static int WorldX = 0;
-	public static boolean showInfo;
+    public static boolean showInfo;
 
     public static JFrame frame;
     static Render r = new Render();
@@ -35,14 +35,13 @@ public class Display {
     // public static Planet[] Body;
     public static Planet[] Body = {
 
-        new Planet("Sun", 0.0, 0.0, 700.0, 1600, 0.0, 0.0, "#FFD151", .05, false),
-
-        new Planet("Obbion",  0.0, -500.0, 8.0, 0.02, 0.0090, 0.0, "#656176", 0.4, true),
-        new Planet("Mov MY28",    0.0, 1200.0, 10.0, 0.2, 0.0050, 0.0, "#F1856A", 0.4, true),
-        new Planet("Duutis",    1800, 0.0, 40.0, 10., 0.0, 0.0046, "#64B6AC", 0.4, true),
-        new Planet("Pheron BM3H",   -4000, 0.0, 60, 30.0, 0.0, 0.0028, "#FFF5B2", 5.0, true),
-        new Planet("Condov",   -4070, 0.0, 10, 0.01, 0.0, 0.0053, "#AA4465", 10.0, false),
-        new Planet("nils",      0.0, 6000.0, 150, 20, 0.002, 0.0, "#C8E9A0", 0.3, true)
+            new Planet("Sun", 0.0, 0.0, 700.0, 1600, 0.0, 0.0, "#FFD151", .05, false),
+            new Planet("Obbion", 0.0, -500.0, 8.0, 0.02, 0.0090, 0.0, "#656176", 0.4, true),
+            new Planet("Mov MY28", 0.0, 1200.0, 10.0, 0.2, 0.0050, 0.0, "#F1856A", 0.4, true),
+            new Planet("Duutis", 1800, 0.0, 40.0, 10., 0.0, 0.0046, "#64B6AC", 0.4, true),
+            new Planet("Pheron BM3H", -4000, 0.0, 60, 30.0, 0.0, 0.0028, "#FFF5B2", 5.0, true),
+            new Planet("Condov", -4070, 0.0, 10, 0.01, 0.0, 0.0053, "#AA4465", 10.0, false),
+            new Planet("nils", 0.0, 6000.0, 150, 20, 0.002, 0.0, "#C8E9A0", 0.3, true)
 
     };
 
@@ -57,7 +56,7 @@ public class Display {
     };
 
     public static Player player = new Player(-4030, 0, 0, 0, 4000.0);
-    
+
     public static void main(String[] args) {
 
         System.out.println(screenSize.getHeight() + " | " + screenSize.getWidth());
@@ -98,5 +97,5 @@ public class Display {
 
         }
     }
-    
+
 }

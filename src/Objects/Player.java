@@ -1,6 +1,7 @@
 package src.Objects;
 
 import src.Main.*;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.Color;
@@ -52,8 +53,8 @@ public class Player implements KeyListener {
         this.dw = this.w * Display.WorldZoom;
 
         AffineTransform old = g2d.getTransform();
-        g2d.rotate(Math.toRadians(Math.toDegrees(Math.atan2(Display.Body[4].py - this.py, Display.Body[4].px  - this.px))-90),
-        (int)(this.dx-this.dh/4), (int)(this.dy-this.dh));
+        g2d.rotate(Math.toRadians(Math.toDegrees(Math.atan2(Display.Body[4].py - this.py, Display.Body[4].px - this.px)) - 90),
+                (int) (this.dx - this.dh / 4), (int) (this.dy - this.dh));
 
         g2d.setColor(Color.decode("#A6CFD5"));
         g2d.drawRect((int) (this.dx - this.dh / 4), (int) (this.dy - this.dh), (int) this.dw, (int) this.dh);
@@ -86,16 +87,16 @@ public class Player implements KeyListener {
         this.fy = f * Math.sin(this.a);
 
     }
-    
-    public double angleToObject(Planet outher){
+
+    public double angleToObject(Planet outher) {
         return Math.atan2(outher.py - this.py, outher.px - this.px);
     }
 
     public double distance(double x1, double y1, double x2, double y2) {
         return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
-    
-    public double getDistanceFromPlanet(Planet planet){
+
+    public double getDistanceFromPlanet(Planet planet) {
         return distance(this.px, this.py, planet.px, planet.py);
     }
 
@@ -111,22 +112,22 @@ public class Player implements KeyListener {
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
 
-        if(Controlled){
+        if (Controlled) {
 
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
-                    
-                break;
+
+                    break;
                 case KeyEvent.VK_S:
-                    
-                break;
+
+                    break;
                 case KeyEvent.VK_D:
-                    
-                break;
+
+                    break;
                 case KeyEvent.VK_A:
-                    
+
                 default:
-                break;
+                    break;
             }
 
         }

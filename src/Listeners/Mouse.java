@@ -9,7 +9,8 @@ import javax.swing.event.MouseInputListener;
 public class Mouse implements MouseInputListener {
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -18,54 +19,59 @@ public class Mouse implements MouseInputListener {
         int y = e.getY();
 
         System.out.println(x);
-        System.out.println(x*Display.WorldZoom);
+        System.out.println(x * Display.WorldZoom);
 
-        if(Display.createPlanet){
-            Display.Body = addX(Display.Body.length, Display.Body, new Planet("name", (x/Display.WorldZoom)-Display.WorldX/Display.WorldZoom, (y/Display.WorldZoom)-Display.WorldY/Display.WorldZoom, 100, 10, 0, 2, "#FFFFFF", 10.0, true));
+        if (Display.createPlanet) {
+            Display.Body = addX(Display.Body.length, Display.Body, new Planet("name", (x / Display.WorldZoom) - Display.WorldX / Display.WorldZoom, (y / Display.WorldZoom) - Display.WorldY / Display.WorldZoom, 100, 10, 0, 2, "#FFFFFF", 10.0, true));
         }
 
         for (int i = 0; i < Display.Body.length; i++) {
-            if(Display.Body[i].pointInCircle(x , y) && Display.Body[i].Focusable){
+            if (Display.Body[i].pointInCircle(x, y) && Display.Body[i].Focusable) {
                 Update.FocusedObject = i;
                 System.out.println("!: " + i);
             }
         }
- 
+
         // else{System.out.println("!1");}
-        if(Display.Button[0].click(x, y)){ 
+        if (Display.Button[0].click(x, y)) {
             Update.FocusedObject = 0;
         }
 
-        if(Display.Button[1].click(x, y)){ 
-            if(Display.running){
+        if (Display.Button[1].click(x, y)) {
+            if (Display.running) {
                 Display.running = false;
-            }else{
+            } else {
                 Display.running = true;
             }
         }
-        
+
     }
-    
-    @Override
-    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseExited(MouseEvent e) {
+    }
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
-    
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+    }
+
     public Planet[] addX(int n, Planet Planet[], Planet x) {
-  
-        Planet newarr[] = new Planet[n + 1]; 
+
+        Planet newarr[] = new Planet[n + 1];
         for (int i = 0; i < n; i++) {
-            newarr[i] = Planet[i]; 
+            newarr[i] = Planet[i];
         }
 
         newarr[n] = x;

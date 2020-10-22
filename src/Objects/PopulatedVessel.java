@@ -15,7 +15,7 @@ public class PopulatedVessel {
     public double sf = 0;
     public boolean Focused = false;
 
-    public PopulatedVessel(double x, double y, double height, double width, String color, double sf){
+    public PopulatedVessel(double x, double y, double height, double width, String color, double sf) {
 
         this.px = x;
         this.py = y;
@@ -29,7 +29,7 @@ public class PopulatedVessel {
 
     }
 
-    public void paintComponent(Graphics2D g2d){
+    public void paintComponent(Graphics2D g2d) {
         g2d.setColor(Color.decode(c));
     }
 }
