@@ -9,10 +9,16 @@ import java.awt.image.BufferStrategy;
 
 public class Display implements Runnable{
 
+    //Frame
     public static JFrame frame;
     public static String Title = "SolarSystem";
     public static String BackgroundColor = "#000000";
     public static Dimension ScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    //Camera
+    public static double WorldZoom = 0.001;
+    public static double WorldX = ScreenSize.getWidth()/2;
+    public static double WorldY = ScreenSize.getHeight()/2;
 
     public static boolean Running = true;
     public Thread thread;
@@ -20,9 +26,7 @@ public class Display implements Runnable{
     public static Graphics g;
     public static Render r = new Render();
 
-    public static CelestialBody Body[] = {
-
-    };
+    public static CelestialBody Body[] = {};
 
     public Display() {
         frame = new JFrame();
@@ -37,8 +41,9 @@ public class Display implements Runnable{
         frame.setVisible(true);
         frame.add(r);
 
-        BodyHandler.add("Sun", "Planet", "#FFD131", 0.0, 0.0, 0.0, 0.0, 500, 100);
-        BodyHandler.add("Sun", "Planet", "#7A6F9B", 0.0, 1000.0, 3, 0.0, 100, 0.1);
+        BodyHandler.add("Sun", "Star", "#FFD131", 0.0, 0.0, 0.0, 0.0, 100000, 10000);
+        BodyHandler.add("Sun", "Planet", "#7A6F9B", 0.0, 70000.0, 2.5, 0.0, 1000, 10);
+        BodyHandler.add("Sun", "Planet", "#FF8A5B", 0.0, -120000.0, -2, 0.0, 2000, 10);
 
         Display.start();
 
@@ -63,7 +68,7 @@ public class Display implements Runnable{
 
         long lastTime = System.nanoTime();
         long timer = System.currentTimeMillis();
-        final double ns = 1000000000.0 / 30;
+        final double ns = 1000000000.0 / 800;
         double delta = 0;
         int frames = 0;
 
@@ -92,7 +97,7 @@ public class Display implements Runnable{
 
         BufferStrategy bs = Display.frame.getBufferStrategy();
         if (bs == null) {
-            Display.frame.createBufferStrategy(3);
+            Display.frame.createBufferStrategy(10);
             return;
         }
         java.awt.Graphics g = bs.getDrawGraphics();

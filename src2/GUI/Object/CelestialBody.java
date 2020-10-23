@@ -14,7 +14,7 @@ public class CelestialBody {
     public double ay;
 
     public static String name;
-    public static String type;
+    public String type;
     public String color;
 
     public double d;

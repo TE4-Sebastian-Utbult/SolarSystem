@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class Render extends JPanel {
 
+    public static Point lightxy = new Point(100,100);
+
     //GLOBAL RENDERER: sets z-index for objects;
 
     public void update(Graphics g) {
@@ -17,10 +19,9 @@ public class Render extends JPanel {
         super.paintComponent(g2d);
         AABB.filled(g2d, Display.BackgroundColor, 0, 0, (int)Display.ScreenSize.getWidth(), (int)Display.ScreenSize.getHeight());
 
-
         CelestialBodys.render(g2d);
 
-        g2d.dispose();
+        g.dispose();
 
     }
 
